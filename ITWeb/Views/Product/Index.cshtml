@@ -1,0 +1,68 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ITWebDB.Entities.Product>
+@{
+    ViewBag.Title = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 0;
+}
+<div class="container">
+    <div class="col-md-2">
+        @{
+            Html.RenderAction("Navigation", "Product");
+        }
+    </div>
+    <div class="col-md-10">
+        <br />
+        <div class="row">
+            @foreach (var sp in Model)
+            {
+                <div class="col-md-3">
+                    <a href="@Url.Action("ProductDetails", "Product", new { id = sp.ProductId })">
+                        <img src="@sp.ImagePath" class="img-thumbnail" />
+                    </a>
+                    <strong>@sp.ProductName</strong>
+                    <p>Giá:<strong>@sp.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")).Replace(" ", ".")</strong> đ</p>
+                    <h6>Thuộc danh mục:@sp.Category.CategoryName</h6>
+                    <h6>Số lượng:@sp.Amount</h6>
+                    <p>
+                        Tình trạng:
+                        <span class="label @(sp.Amount > 0 ? "label-success" : "label-danger")">
+                            @(sp.Amount > 0 ? "còn hàng" : "hết hàng")
+                        </span>
+                    </p>
+                    <center>
+                        @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+                        {
+                            if (sp.Amount > 0)
+                            {
+                                <input type="hidden" name="productId" value="@sp.ProductId" />
+                                <center>
+                                    <button type="submit" class="btn btn-default">
+                                        Mua ngay
+                                    </button>
+                                </center>
+                            }
+                            else
+                            {
+                                <label>Tạm hết hàng</label>
+                            }
+                        }
+                    </center>
+                    <br />
+                </div>
+
+                i++;
+                if (i % 4 == 0)
+                {
+                    @Html.Raw("</div><div class='row'>");
+                }
+            }
+        </div>
+        <center>
+            <div>
+                @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page}))
+            </div>
+        </center>
+    </div>
+    </div>

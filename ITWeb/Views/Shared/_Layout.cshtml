@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/myCSS.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="nav navbar-inverse navbar-fixed-top" style="height:60px">
+        <div class="col-md-3 space-topText">
+            <span>@Html.ActionLink("Trang chủ", "Index", "Product")</span>
+            <span class="space-left">@Html.ActionLink("Giỏ hàng", "Index", "Cart")</span>
+            <span class="space-left">@Html.ActionLink("Liên hệ", "LienHe", "Product")</span>
+        </div>
+        <div class="col-md-7 space-topTimKiem">
+            <center>
+                @using (Html.BeginForm("Index", "Product", FormMethod.Post, new { @class = "form-inline" }))
+                {
+                    <input value="@((!string.IsNullOrEmpty((string)ViewBag.Keyword)) ? (string)ViewBag.Keyword : "")"
+                           class="form-control" name="keyword" type="search" placeholder="Tìm kiếm" aria-label="Search" style="width:400px">
+                    <button class="btn btn-outline-success" type="submit">
+                        <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                }
+            </center>
+        </div>
+        <div class="col-md-2 space-topText">
+            <span>@Html.ActionLink("Đăng nhập", "Index", "Admin")</span>
+        </div>
+    </div>
+    <div>
+        <br />
+        <br />
+        <br />
+        <br />
+        @RenderBody()
+        <hr />
+
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

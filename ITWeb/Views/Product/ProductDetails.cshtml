@@ -1,0 +1,46 @@
+﻿@model ITWebDB.Entities.ProductDetails
+@{
+    ViewBag.Title = Model.Product.ProductName;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@Model.Product.ImagePath" class="img-thumbnail" width="60%" />
+        </div>
+        <div class="col-md-5">
+            <h4>@Model.Product.ProductName</h4>
+            <span>Giá:<strong>@Model.Product.Price</strong> đ</span>
+            <h6>Thuộc danh mục:@Model.Product.Category.CategoryName</h6>
+            <h6>Số lượng:@Model.Product.Amount</h6>
+            <p>
+                Tình trạng:
+                <span class="label @(Model.Product.Amount > 0 ? "label-success" : "label-danger")">
+                    @(Model.Product.Amount > 0 ? "còn hàng" : "hết hàng")
+                </span>
+            </p>
+
+            @using (Html.BeginForm("AddToCart", "Cart", FormMethod.Post))
+            {
+                if (Model.Product.Amount > 0)
+                {
+                    <input type="hidden" name="productId" value="@Model.ProductId" />
+                    <button type="submit" class="btn btn-default">
+                        Mua ngay
+                    </button>
+                }
+            }
+        </div>
+        <div class="col-md-3">
+            <h3>Thông số kỹ thuật</h3>
+            <p>Màn hình:@Model.ManHinh</p>
+            <p>Hệ điều hành:@Model.HeDieuHanh</p>
+            <p>Camera sau:@Model.CameraSau</p>
+            <p>Camera trước:@Model.CameraTruoc</p>
+            <p>CPU:@Model.CPU</p>
+            <p>RAM:@Model.RAM</p>
+            <p>Bộ nhớ trong:@Model.BoNhoTrong</p>
+            <p>Dung lượng pin:@Model.DungLuongPin</p>
+        </div>
+    </div>
+</div>

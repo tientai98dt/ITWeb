@@ -1,0 +1,102 @@
+﻿@model ITWeb.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Giỏ hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<br />
+<h3 class="space-left" >Thông tin đơn hàng</h3>
+@if (Model.Cart.Lines.Count > 0)
+{
+    <div id="cart-content">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th align="center">Số lượng</th>
+                    <th align="left">Sản phẩm</th>
+                    <th align="right">Giá tiền</th>
+                    <th align="right">Thành tiền</th>
+                    <th style="width: 200px">Chức năng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Cart.Lines)
+                {
+                    <tr>
+                        <td>
+                            @item.Quantity
+                        </td>
+                        <td>
+                            @item.Product.ProductName
+                        </td>
+                        <td>@item.Product.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")).Replace(" ", ".")</td>
+                        <td>
+                            @((item.Quantity * item.Product.Price))
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("RemoveFromCart", "Cart", FormMethod.Post))
+                            {
+                                <input type="hidden" name="productId" value="@item.Product.ProductId" />
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </button>
+                            }
+
+                            @using (Html.BeginForm("UpdateQuantity", "Cart", FormMethod.Post))
+                            {
+                                <input type="hidden" name="productId" value="@item.Product.ProductId" />
+                                <div class="input-group">
+                                    <input class="form-control" name="Quantity" value="@item.Quantity" type="number"
+                                           max="10" />
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="btn btn-success">Cập nhật</button>
+                                    </span>
+                                </div>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" align="right">Tổng tiền</td>
+                    <td align="right">@Model.Cart.ComputeTotalValue().ToString("N0", new System.Globalization.CultureInfo("vi-VN")).Replace(" ", ".")</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <br />
+    <center>
+        <nav>
+            <ul class="pager">
+                <li>
+                    <a href="@Url.Action("Index","Product")" style="color:black">
+                        Tiếp tục mua hàng
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("CheckOut", "Cart")" style="color:black">
+                        Thanh toán
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </center>
+}
+else
+{
+    <center><h3>Chưa có sản phẩm nào trong giỏ hàng</h3></center>
+    <br />
+    <center>
+        <nav>
+            <ul class="pager">
+                <li>
+                    <a href="@Url.Action("Index","Product")" style="color:black">
+                        Tiếp tục mua hàng
+                    </a>
+            </ul>
+        </nav>
+    </center>
+}
+

@@ -1,0 +1,68 @@
+﻿@model ITWebDB.Entities.Feedback
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<center><h1>HÂN HẠNH ĐƯỢC HỖ TRỢ QUÝ KHÁCH</h1></center>
+@using (Html.BeginForm("LienHe", "Product", FormMethod.Post))
+{
+    <div class="container">
+        <p>
+            Quý khách đang quan tâm về:
+            <div style="width:400px">
+                @Html.DropDownListFor(model => model.CategoryFeedbackID,
+new SelectList(ViewBag.CategoryFeedback, "CategoryFeedbackID", "CategoryFeedbackName"),
+new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryFeedbackID, "", new { @class = "text-danger" })
+            </div>
+        </p>
+        <p>
+            Tiêu đề:
+            <div style="width:400px">
+                @Html.TextBoxFor(model => model.Title,
+ new { @class = "form-control", placeholder = "Nhập tiêu đề" })
+            </div>
+        </p>
+        <p>
+            Nội dung:
+            <div style="width:400px">
+                @Html.TextBoxFor(model => model.Content,
+ new { @class = "form-control", placeholder = "Nhập nội dung" })
+            </div>
+        </p>
+        <p>
+            Họ và tên:
+            <div style="width:400px">
+                @Html.TextBoxFor(model => model.Name,
+ new { @class = "form-control", placeholder = "Nhậph họ và tên của bạn" })
+            </div>
+        </p>
+        <p>
+            Địa chỉ email:
+            <div style="width:400px">
+                @Html.TextBoxFor(model => model.Email,
+ new { @class = "form-control", placeholder = "Nhập email" })
+            </div>
+        </p>
+        <p>
+            Số điện thoại:
+            <div style="width:400px">
+                @Html.TextBoxFor(model => model.Phone,
+ new { @class = "form-control", placeholder = "Nhập SĐT" })
+            </div>
+        </p>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Gửi liên hệ" class="btn btn-success" />
+        </div>
+    </div>
+}
+<br />
+<br />
+<br />
+<br />
+<div class="space-left">
+    <p>Tổng đài tư vấn, hỗ trợ khách hàng (7h30 đến 22h): 1888.1000 hoặc 022.2222.1000</p>
+    <p>Email:<a style="color:#0072bc">anhtu01679353361@gmail.com</a></p>
+</div>

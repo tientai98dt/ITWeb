@@ -1,0 +1,26 @@
+﻿body {
+    background-color: #F1F1F1;
+    padding-top:0px;
+}
+.navbar-inverse .navbar-nav > li > a {
+    color: #dddddd;
+}
+.space-left{
+    margin-left:25px;
+}
+.list-group-item {
+    background-color: #808080;
+}
+a {
+    color: white;
+}
+.space-topTimKiem{
+    margin-top:13px;
+}
+.space-topText{
+    margin-top:18px;
+}
+hr{
+    color:black!important;
+    
+}

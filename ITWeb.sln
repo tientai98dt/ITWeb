@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITWeb", "ITWeb\ITWeb.csproj", "{B3959CC1-5F82-4291-B5D0-C79E00F23968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITWebDB", "ITWebDB\ITWebDB.csproj", "{8C8A3A5C-7D20-4ED7-A775-6C8A7AF3AB85}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B3959CC1-5F82-4291-B5D0-C79E00F23968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3959CC1-5F82-4291-B5D0-C79E00F23968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3959CC1-5F82-4291-B5D0-C79E00F23968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3959CC1-5F82-4291-B5D0-C79E00F23968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C8A3A5C-7D20-4ED7-A775-6C8A7AF3AB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C8A3A5C-7D20-4ED7-A775-6C8A7AF3AB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C8A3A5C-7D20-4ED7-A775-6C8A7AF3AB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C8A3A5C-7D20-4ED7-A775-6C8A7AF3AB85}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FEB54FB6-A349-4739-8501-10E89F80D2CA}
+	EndGlobalSection
+EndGlobal

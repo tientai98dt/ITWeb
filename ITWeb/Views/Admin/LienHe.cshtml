@@ -1,0 +1,35 @@
+﻿@model List<ITWebDB.Entities.Feedback>
+@{
+    ViewBag.Title = "LienHe";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<center><h1>Danh sách các phản hồi từ khách hàng</h1></center>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Loại phản hồi</th>
+            <th>Tiêu đề</th>
+            <th>Nội dung</th>
+            <th>Tên KH</th>
+            <th>Email KH</th>
+            <th>SĐT KH</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var lh in Model)
+        {
+        <tr>
+            <td><a style="color:#0072bc">@lh.CategoryFeedback.CategoryFeedbackName</a></td>
+            <td>@lh.Title</td>
+            <td>@lh.Content</td>
+            <td>@lh.Name</td>
+            <td>@lh.Email</td>
+            <td>@lh.Phone</td>
+        </tr>
+        }
+    </tbody>
+
+</table>
+

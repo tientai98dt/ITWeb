@@ -1,0 +1,15 @@
+﻿@model List<ITWebDB.Entities.Category>
+
+<h3>Danh Mục Sản Phẩm</h3>
+<ul class="list-group list-group-item-success">
+    @foreach (var category in Model)
+    {
+        <li class="list-group-item">
+            <a href="@Url.Action("Index", "Product",
+                    new {category.CategoryId})">
+                @category.CategoryName
+            </a>
+        </li>
+    }
+</ul>
+

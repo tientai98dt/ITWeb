@@ -1,0 +1,73 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<ITWebDB.Entities.Product>
+@{
+    /**/
+
+    ViewBag.Title = "Trang Admin";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="col-md-12">
+    <h3 class="pull-left">Danh sách sản phẩm</h3>
+    <nav class="pull-right">
+        @using (Html.BeginForm("Index", "Admin", FormMethod.Post, new { @class = "form-inline" }))
+        {
+            <input value="@((!string.IsNullOrEmpty((string)ViewBag.Keyword)) ? (string)ViewBag.Keyword : "")"
+                   class="form-control" name="keyword" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">
+                <i class="glyphicon glyphicon-search"></i> Tìm kiếm
+            </button>
+        }
+
+    </nav>
+</div>
+
+<a class="btn btn-primary" href="@Url.Action("ProductAdd", "Admin")">
+    <i class="glyphicon glyphicon-plus"></i> Thêm sản phẩm
+</a>
+
+<table class="table table-responsive table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Danh mục</th>
+            <th>Giá tiền</th>
+            <th>Số lượng</th>
+            <th>Hình ảnh</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Category.CategoryName</td>
+                <td>@item.Price.ToString("N0", new System.Globalization.CultureInfo("vi-VN")).Replace(" ", ".")</td>
+                <td>@item.Amount</td>
+                <td><img src="@item.ImagePath" width="80" /> </td>
+                <td>
+                    <a href="@Url.Action("ProductEdit",
+                            "Admin", new { id = item.ProductId })"
+                       class="btn btn-primary">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                    <a href="@Url.Action("DeleteProduct",
+                            "Admin",new { id=item.ProductId })"
+                       class="btn btn-danger btn-xoa">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<center>
+    <div>
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page, keyword = ViewBag.Keyword }))
+    </div>
+</center>
+

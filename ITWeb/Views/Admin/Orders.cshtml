@@ -1,0 +1,36 @@
+﻿@model List<ITWebDB.Entities.Orders>
+@{
+    ViewBag.Title = "Danh sách các đơn đặt hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<center><h1>Danh sách các đơn đặt hàng</h1></center>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Tên KH</th>
+            <th>Địa KH</th>
+            <th>SĐT KH</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var hd in Model)
+        {
+            foreach (var ct in hd.OrderDetails)
+            {
+        <tr>
+            <td><a style="color:#0072bc">@ct.Product.ProductName</a></td>
+            <td>@ct.Quantity</td>
+            <td>@hd.Customer.CustomerName</td>
+            <td>@hd.Customer.Address</td>
+            <td>@hd.Customer.Phone</td>
+        </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
